@@ -38,7 +38,7 @@ const PostData = () => {
     const humids = relativehumidity_2m.map(item =>{
       return (
         <div>
-          <h5> humidity value {item}</h5>
+          <h5> Humidity-{item}</h5>
         </div>
       )
     })
@@ -47,7 +47,7 @@ const PostData = () => {
     const temp = temperature_2m.map(item =>{
       return (
         <div>
-          <h5> temperature value {item}</h5>
+          <h5> Temperature-{item}</h5>
         </div>
       )
     })
@@ -56,7 +56,7 @@ const PostData = () => {
     const wind = windspeed_120m.map(item =>{
       return (
         <div>
-          <h5> windspeed value {item}</h5>
+          <h5> Wind speed-{item}</h5>
         </div>
       )
     })
@@ -65,16 +65,16 @@ const PostData = () => {
     const cloud = cloudcover_mid.map(item =>{
       return (
         <div>
-          <h5> cloud cover value {item}</h5>
+          <h5> Cloud cover-{item}</h5>
         </div>
       )
     })
 
     return(
       <div>
-        {humids}
         {temp}
         {wind}
+        {humids}
         {cloud}
       </div>
     )
