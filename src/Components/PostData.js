@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 const PostData = () => {
@@ -13,8 +13,7 @@ const PostData = () => {
   async function fetchData(){
     const response = await axios.get(url)
     console.log(response.data)
-    setData(response.data)  
-    
+    setData(response.data)
   }
 
   if (!data) {
@@ -25,20 +24,14 @@ const PostData = () => {
 
     console.log(data)
 
-    const {relativehumidity_2m, temperature_2m, cloudcover_mid, windspeed_120m,time} = hourly;
+    const {relativehumidity_2m, temperature_2m, cloudcover_mid, windspeed_120m} = hourly;
 
-    // all gives string type; access directly e.g {temp_unit}
-    const temp_unit = hourly.temperature_2m
-    const windspeed_unit = hourly.windspeed_120m
-    const cloudcover_unit= hourly.cloudcover_mid
-    const humidity_unit = hourly.relativehumidity_2m
-    const time_unit = hourly.time
 
     //humidity
     const humids = relativehumidity_2m.map(item =>{
       return (
         <div>
-          <h5> Humidity-{item}</h5>
+          {item}%
         </div>
       )
     })
@@ -47,7 +40,7 @@ const PostData = () => {
     const temp = temperature_2m.map(item =>{
       return (
         <div>
-          <h5> Temperature-{item}</h5>
+          {item}°C
         </div>
       )
     })
@@ -56,7 +49,7 @@ const PostData = () => {
     const wind = windspeed_120m.map(item =>{
       return (
         <div>
-          <h5> Wind speed-{item}</h5>
+          {item}km/h
         </div>
       )
     })
@@ -65,24 +58,40 @@ const PostData = () => {
     const cloud = cloudcover_mid.map(item =>{
       return (
         <div>
-          <h5> Cloud cover-{item}</h5>
+          {item}%
         </div>
       )
     })
 
     return(
       <div>
-        {temp}
-        {wind}
-        {humids}
-        {cloud}
+        <div className="container">
+          <div className="col-md-9">
+            <div className="row">
+              <table className={"table table-success table-bordered"}>
+                <tr style={{fontSize: "large"}}>
+                  <th>Temperature</th>
+                  <th>Wind Speed</th>
+                  <th>Humidity</th>
+                  <th>Cloud Cover</th>
+                </tr>
+                <tr style={{fontSize: "large"}}>
+                  <td>{temp}</td>
+                  <td>{wind}</td>
+                  <td>{humids}</td>
+                  <td>{cloud}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     )
 
     
   }
 
-  const weather_data = data
+  // const weather_data = data
 
   //handle form submission
   const handleSubmit = (e) => {
@@ -106,12 +115,25 @@ const PostData = () => {
     }
   };
 
+  const mystyle = {
+    border: "2px solid blue",
+    borderRadius: "5px",
+    width: "30%"
+  };
+
+  const mybutton = {
+    background: "grey",
+    width: "10%",
+    marginTop: "20px",
+    borderRadius: "5px"
+  };
+
   return (
     <div>
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <input 
+            <input style={mystyle}
               type="number" 
               value={longitude} 
               onChange={(e) => setLongitude(e.target.value)}
@@ -119,14 +141,14 @@ const PostData = () => {
           </div>
           <br/>
           <div>
-            <input 
+            <input style={mystyle}
               type="number" 
               value={latitude} 
               onChange={(e) => setLatitude(e.target.value)}
             />
           </div>
                
-          <button type="submit">Add Area</button>
+          <button type="submit" style={mybutton}>Weather</button>
 
         </form>
 

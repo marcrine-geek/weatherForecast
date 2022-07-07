@@ -2,10 +2,16 @@ import React from 'react'
 import PostData from './Components/PostData';
 
 function App(){
+    const head = {
+        marginTop: "40px"
+    };
   return(
     <div>
-        <h1>Weather Forecast App</h1>
-        <PostData/>
+        <div className="container">
+            <h1 style={head}>Weather Forecast App</h1>
+            <PostData/>
+        </div>
+
     </div>
   );
 }
