@@ -135,6 +135,7 @@ const PostData = () => {
           <div>
             <input style={mystyle}
               type="number" 
+              placeholder="Input Longitude. . ."
               value={longitude} 
               onChange={(e) => setLongitude(e.target.value)}
             />
@@ -143,6 +144,7 @@ const PostData = () => {
           <div>
             <input style={mystyle}
               type="number" 
+              placeholder="Input Latitude. . ."
               value={latitude} 
               onChange={(e) => setLatitude(e.target.value)}
             />
